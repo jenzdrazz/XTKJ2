@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>Kelas X TKJ 2</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #eef3f8;
+      background-image: radial-gradient(ellipse at 20% 50%, rgba(180, 210, 240, 0.3) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 20%, rgba(160, 200, 230, 0.2) 0%, transparent 50%),
+                        linear-gradient(145deg, #e8eff6 0%, #d5e2ef 100%);
+      display: flex;
+ justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .card {
+      max-width: 460px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 56px;
+      box-shadow: 
+        0 30px 60px -18px rgba(20, 45, 80, 0.3),
+        0 8px 20px -8px rgba(0, 20, 40, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+      padding: 2.6rem 2rem 2.8rem;
+      border: 1px solid rgba(255, 255, 255, 0.5);
+      transition: transform 0.25s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 40px 70px -20px rgba(20, 50, 80, 0.35);
+    }
+
+    /* header dengan identitas kelas */
+    .header {
+      margin-bottom: 2.6rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .badge-kelas {
+      display: inline-block;
+      background: linear-gradient(135deg, #2b4f6e, #1b3853);
+      color: white;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.6px;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+      background: rgba(30, 60, 90, 0.85);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #0f263b;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .header h1 .kelas-nama {
+      background: linear-gradient(135deg, #1e4a6e, #2a5f85);
+      color: white;
+      font-size: 1.4rem;
+      font-weight: 600;
+      padding: 0.15rem 1.2rem;
+      border-radius: 40px;
+      display: inline-block;
+      box-shadow: 0 4px 12px rgba(20, 60, 100, 0.2);
+      letter-spacing: 0.5px;
+    }
+
+    .sub {
+      font-size: 0.9rem;
+      color: #3b5f7c;
+      opacity: 0.7;
+      margin-top: 0.4rem;
+      font-weight: 450;
+      letter-spacing: 0.2px;
+    }
+
+    /* tombol grid */
+    .button-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      padding: 1.15rem 1.8rem;
+      border: none;
+      border-radius: 60px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.2, 0.9, 0.4, 1);
+      box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.15);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.2px;
+      width: 100%;
+      gap: 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn:active {
+      transform: scale(0.96);
+    }
+
+    .btn-icon {
+      font-size: 1.8rem;
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+    }
+
+    .btn-text {
+      flex: 1;
+      text-align: left;
+    }
+
+    .btn-arrow {
+      font-size: 1.2rem;
+      opacity: 0.7;
+      transition: transform 0.25s ease, opacity 0.2s ease;
+      margin-left: 0.2rem;
+    }
+
+    .btn:hover .btn-arrow {
+      transform: translateX(6px);
+      opacity: 1;
+    }
+
+    /* tombol jadwal pelajaran - warna biru soft */
+    .btn-jadwal {
+      background: linear-gradient(145deg, #256a92, #164a6e);
+      box-shadow: 0 10px 28px -10px rgba(25, 80, 130, 0.4);
+    }
+
+    .btn-jadwal:hover {
+      background: linear-gradient(145deg, #2e7faa, #1a577f);
+      box-shadow: 0 14px 34px -12px rgba(25, 80, 130, 0.5);
+      transform: translateY(-2px);
+    }
+
+    /* tombol piket - warna hijau soft */
+    .btn-piket {
+      background: linear-gradient(145deg, #2e7d5e, #1a553e);
+      box-shadow: 0 10px 28px -10px rgba(30, 100, 70, 0.35);
+    }
+
+    .btn-piket:hover {
+      background: linear-gradient(145deg, #3a9370, #22684b);
+      box-shadow: 0 14px 34px -12px rgba(30, 100, 70, 0.45);
+      transform: translateY(-2px);
+    }
+
+    /* efek glassmorphism pada tombol */
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.2), transparent 70%);
+      pointer-events: none;
+      border-radius: 60px;
+    }
+
+    /* footer */
+    .footer-note {
+      margin-top: 2.8rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #3f6582;
+      opacity: 0.5;
+      letter-spacing: 0.4px;
+      border-top: 1px solid rgba(60, 100, 140, 0.08);
+      padding-top: 1.6rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .footer-note span {
+      opacity: 0.4;
+    }
+
+    /* sentuhan modern: dot indikator */
+    .dot-indicator {
+      display: inline-flex;
+      gap: 4px;
+    }
+    .dot-indicator i {
+      width: 6px;
+      height: 6px;
+      border-radius: 20px;
+      background: #2e5f7a;
+      opacity: 0.15;
+      display: inline-block;
+    }
+    .dot-indicator i.active {
+      opacity: 0.5;
+      background: #1f5270;
+      width: 18px;
+    }
+
+    @media (max-width: 400px) {
+      .card {
+        padding: 1.8rem 1.2rem 2rem;
+        border-radius: 40px;
+      }
+      .header h1 {
+        font-size: 1.7rem;
+      }
+      .header h1 .kelas-nama {
+        font-size: 1.1rem;
+        padding: 0.1rem 1rem;
+      }
+      .btn {
+        font-size: 1rem;
+        padding: 1rem 1.2rem;
+        gap: 0.7rem;
+      }
+      .btn-icon {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="badge-kelas">✦ 2026 / 2027</div>
+      <h1>
+        <span class="kelas-nama">X TKJ 2</span>
+      </h1>
+      <div class="sub">dashboard kelas · akses cepat</div>
+    </div>
+
+    <div class="button-grid">
+      <!-- Jadwal Pelajaran → ganti link dengan website tujuan -->
+      <a href="https://xtkj-2.vercel.app/pelajaran.jpg" target="_blank" rel="noopener noreferrer" class="btn btn-jadwal">
+        <span class="btn-icon">📖</span>
+        <span class="btn-text">Jadwal Pelajaran</span>
+        <span class="btn-arrow">→</span>
+      </a>
+
+      <!-- Jadwal Piket → ganti link dengan website tujuan -->
+      <a href="https://xtkj-2.vercel.app/piket.jpg" target="_blank" rel="noopener noreferrer" class="btn btn-piket">
+        <span class="btn-icon">🧹</span>
+        <span class="btn-text">Jadwal Piket</span>
+        <span class="btn-arrow">→</span>
+      </a>
+    </div>
+
+    <div class="footer-note">
+      <span>●</span> tap untuk membuka halaman <span>●</span>
+    </div>
+  </div>
+</body>
+</html>
